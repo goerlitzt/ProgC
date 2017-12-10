@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main () {
+
+double a=2.0;
+double b=3.0;
+double c=0.4E1;
+double p=3.14;
+double ergebnis1=0;
+double ergebnis2=0;
+double ergebnis3=0;
+double ergebnis4=0;
+double ergebnis5=0;
+
+ergebnis1 = 5 * a + 76 + 3.1;
+printf("Das erste Ergebnis ist: %f\n",ergebnis1);
+
+ergebnis2 = 1 / (a*a);
+printf("Das zweite Ergebnis ist: %f\n",ergebnis2);
+
+ergebnis3 = (-a)*(-a);
+printf("Das dritte Ergebnis ist: %f\n",ergebnis3);
+
+ergebnis4 = (a+6) / (2 * p * a + (1/a));
+printf("Das vierte Ergebnis ist: %f\n",ergebnis4);
+
+ergebnis5 = a + (b - (p/c)) / ( a + (c / (a - (1 / b))));
+printf("Das fünfte Ergebnis ist: %f\n",ergebnis5);
+
+
+
+
+return 0;
+
+}
