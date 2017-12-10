@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main(){
+int a = 0;
+int b = 0;
+int ergebnis1 = 0;
+int ergebnis2 = 0;
+int ergebnis3 = 0;
+
+
+
+printf("Welche Zahlen sollen miteinander verrechnet werden?\n");
+scanf("%d", &a);
+scanf("%d", &b);
+
+ergebnis1 = a + b;
+ergebnis2 = a - b;
+ergebnis3 = a * b;
+
+printf("\n%d + %d = %d \n",a , b , ergebnis1);
+printf("%d - %d = %d \n",a , b , ergebnis2);
+printf("%d * %d = %d \n",a , b , ergebnis3);
+
+float c = (int)a;
+float d = (int)b;
+float ergebnis4 = 0 ;
+float ergebnis5 = 0 ;
+float ergebnis6 = 0 ;
+float ergebnis7 = 0 ;
+
+ergebnis4 = c / d;
+ergebnis5 = c + d;
+ergebnis6 = c - d;
+ergebnis7 = c * d;
+
+
+printf("\n%f + %f = %f \n",c , d , ergebnis5);
+printf("%f - %f = %f \n",c , d , ergebnis6);
+printf("%f * %f = %f \n",c , d , ergebnis7);
+
+if(d==0){
+printf("%f / %f = Division durch 0 ist nicht definiert!\n");
+    
+}
+else{
+printf("%f / %f = %f \n",c , d , ergebnis4);
+}
+    
+}
