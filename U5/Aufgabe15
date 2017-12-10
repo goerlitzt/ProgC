@@ -1,0 +1,38 @@
+#include <stdio.h>
+int main(){
+const int WAHR =1;
+const int FALSCH=0;
+int x;
+int y;
+    
+   printf("\nx y             NOT x   NOT y   x AND y     x OR y    x XOR y      ~x\n");
+   x = WAHR;
+   y = WAHR;
+   printf("WAHR WAHR           %d     %d       %d           %d           %d         %d\n",!x, !y, x && y, x || y, x^y, ~x);
+   
+   x = WAHR;
+   y = FALSCH;
+   printf("WAHR FALSCH         %d     %d       %d           %d           %d         %d\n",!x, !y, x && y, x || y, x^y, ~x);
+   
+   x = FALSCH;
+   y = WAHR;
+   printf("FALSCH WAHR         %d     %d       %d           %d           %d         %d\n",!x, !y, x && y, x || y, x^y, ~x);
+   
+   x = FALSCH;
+   y = FALSCH;
+   printf("FALSCH FALSCH       %d     %d       %d           %d           %d         %d\n\n",!x, !y, x && y, x || y, x^y, ~x);
+    
+    
+    int a=0;
+    int b=0;
+    printf("Geben Sie zwei Zahlen ein:\n");
+    scanf("%d",&a);
+    scanf("%d",&b);
+   
+    printf("%d && %d = %d\n",a,b,a && b );
+    printf("%d || %d = %d\n",a ,b, a || b);
+    printf("%d | %d = %d\n",a ,b, a|b);
+    printf("%d & %d = %d\n",a, b, a&b);
+        
+return 0;
+}
