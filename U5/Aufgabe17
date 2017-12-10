@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main(){
+float ausgabe1 = 12.0/8.0/2.0;
+float ausgabe2= 5.0/50.0*10.0;
+float ausgabe3 = 3.0/6.0/9.0;
+
+printf("%f\n",ausgabe1);
+printf("%f\n",ausgabe2);
+printf("%f\n",ausgabe3);
+return 0;
+}
