@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+int main(){
+    double a;
+    double b;
+    double c;
+    double x1;
+    double x2;
+    
+    printf("Die Nullstellen für ax^2+bx+c sollen berechnet werden.\n");
+    printf("Welche Zahlen wollen Sie für a, b und c einsetzen?\n");
+    scanf("%f",&a);
+    scanf("%f",&b);
+    scanf("%f",&c);
+    
+    printf("%f\n",a);
+    printf("%f\n",b);
+    printf("%f\n",c);
+    
+    double d = (b*b)-(4*a*c);
+    
+    x1 = ((-b + sqrt((b*b)-(4*a*c)))/(2*a));
+    x2 = ((-b - sqrt((b*b)-(4*a*c)))/(2*a));
+    
+    if (d < 0)
+    {
+        printf("Funktion hat keine Nullstellen\n");
+    }
+    if (d > 0)
+    {
+        printf("Funktion hat Nullstellen und zwar bei:\n");
+        printf("x1 = %f\n",x1);
+        printf("x2 = %f\n",x2);
+    }
+    if (d==0)
+    {
+        printf("Die Funktion hat genau eine Nullstelle und zwar:\n");
+        printf("x1 = %f\n",x1);
+        printf("x2 = %f\n",x2);
+    }
+}
