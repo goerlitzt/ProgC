@@ -2,61 +2,72 @@
 int main()
 {
     char s=1;
+    do 
+    {
+        printf("Nach welchem Element suchen Sie?\n Das Programm kann mit der Eingabe von 0 abgebrochen werden.\n");
+            
+    }
     
-    while(s != 0){
-        printf("Nach welchem Element suchen Sie?\n");
-            scanf(" %s", &s);
+    while(s != 0);{
+    scanf(" %s", &s);
     switch(s)
     {
         case 'H': case 'h':
             printf("Wasserstoff\n");
-            
-            
             break;
+            
         case 'B': case 'b':
             printf("Bor\n");
-            
             break;
+            
         case 'C': case'c':  
             printf("Kohlenstoff\n");
-            
             break;
+            
         case 'N' : case 'n':
             printf("Stickstoff\n");
-            
             break;
+            
         case 'O': case'o':
             printf("Sauerstoff\n");
-            
             break;
+            
         case 'F': case 'f':
             printf("Fluor\n");
-            
             break;
+            
         case 'P' : case 'p':
             printf("Phosphor\n");
-            
             break;
+            
         case 'S' : case 's':
             printf("Schwefel\n");
-            
             break;
+            
         case 'K' : case 'k':
             printf("Kalium\n");
-            
             break;
+            
         case 'V' : case 'v':
             printf("Vanadium\n");
-           
             break;
+            
         case 'Y' : case 'y':
             printf("Yttrium\n");
-            
             break;
+            
         case 'I' : case 'i':
             printf("Iod\n");
-            
             break;
+            
+             case 'U' : case 'u':
+            printf("Uran\n");
+            break;
+            
+            case 'W' : case 'w':
+            printf("Wolfram\n");
+            break;
+            
         case 0 : case '0':
             s=0;
             break;
