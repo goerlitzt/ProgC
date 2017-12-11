@@ -4,12 +4,9 @@ int main()
     char s=1;
     do 
     {
-        printf("Nach welchem Element suchen Sie?\n Das Programm kann mit der Eingabe von 0 abgebrochen werden.\n");
-            
-    }
-    
-    while(s != 0);{
-    scanf(" %s", &s);
+        printf("\nNach welchem Element des Periodensystems suchen Sie?\n");
+        printf("Wenn Sie das Programm beenden möchten geben Sie bitte 0 ein\n");
+        scanf(" %s", &s);
     switch(s)
     {
         case 'H': case 'h':
@@ -72,9 +69,13 @@ int main()
             s=0;
             break;
             
-        default: printf("Buchstabe ist keine Abkürzung für ein Element des Periodensystems!\n");
-        break;
+        default: printf("Eingabe ist keine Abkürzung für ein Element des Periodensystems!\n");
+        break;    
     }
     }
+    while(s != 0);{
+    
+    }
+    
     
 }
