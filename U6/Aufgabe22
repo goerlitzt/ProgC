@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main()
+{
+    int a,b,c;
+    printf("Geben sie Zaheln für a,b und c ein:\n");
+    scanf("%d",&a);
+    scanf("%d",&b);
+    scanf("%d",&c);
+     
+}
