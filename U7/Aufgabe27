@@ -1,0 +1,85 @@
+#include <stdio.h>
+int main()
+{
+int zahl;
+printf("Geben Sie eine Zahl ein, die in Wort umgeformt werden soll.\n");
+scanf("%d",&zahl);
+
+int zaehler = 0;
+int potenz = 1;
+int copy = zahl;
+int ziffer;
+
+    while (copy > 0)  // Findet Stellen heraus
+    {
+        copy = copy / 10;
+    
+        zaehler++;
+    
+    }
+    int i;
+    for (i = 0 ; i < zaehler-1; i++)
+    {
+        potenz = potenz * 10;
+    }
+    //printf("%d\n", potenz);  
+    
+  while (zahl > 0)
+  {
+    ziffer = zahl / potenz;
+    
+    switch(ziffer)
+    {
+        case 0:
+            printf("null\n");
+            break;
+            
+        case 1:
+            printf("eins\n");
+            break;
+            
+        case 2:
+            printf("zwei\n");
+            break;
+            
+        case 3:
+            printf("drei\n");
+            break;
+            
+        case 4:
+            printf("vier\n");
+            break;
+            
+        case 5:
+            printf("fünf\n");
+            break;
+            
+        case 6:
+            printf("sechs\n");
+            break;
+            
+        case 7:
+            printf("sieben\n");
+            break;
+            
+        case 8:
+            printf("acht\n");
+            break;
+            
+        case 9:
+            printf("neun\n");
+            break;
+            
+        default:
+            printf("mhja\n");
+            break;
+    }
+        
+    
+    zahl = zahl - (ziffer *potenz);
+    //printf("%d\n",zahl);
+    zaehler = zaehler -1;
+    potenz = potenz / 10;
+  }
+      
+}
