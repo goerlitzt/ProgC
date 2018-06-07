@@ -3,63 +3,64 @@
 start:
 	#Aufgabe 4.2 
 	
-	xor $8,$8,$8    
+	xor $8,$8,$8        	 # 8    0
 	
 	xor $9,$9,$9
-	addi $9,$0,11
+	addi $9,$0,11		# 9	11
 	
 	xor $10,$10,$10
-	lui $10,4096
+	lui $10,4096		# 10	0x1000
 	
 	xor $11,$11,$11
-	addi $11,$0,-1
+	addi $11,$0,-1		#11	-1
 	
 	xor $12,$12,$12
-	addi $12,$0,-0x8000
+	addi $12,$0,-0x8000	#12	-0x8000
 	
 	xor $13,$13,$13
-	lui  $13,0x8000
+	lui  $13,0x8000		#13	0x8000
 	
 	xor $14,$14,$14
-	lui $14, 0xFFFF
+	lui $14, 0xFFFF		#14	0xffff0000
 	
 	xor $15,$15,$15
 	lui $15,0x7FFF
-	ori $15,$15,0xFFFF
+	ori $15,$15,0xFFFF	#15	0x7fffffff
 	
 	xor $24,$24,$24
-	addi $24,$0,5322
+	addi $24,$0,5322	#16	5322
 	
-	xor $25,$0,75
+	xor $25,$0,75		#17	75
 	
 	#Aufgabe 4.3
 	
-	add $2,$10,$9
+	add $2,$10,$9		# a
 	
-	sub $2,$10,$9
+	sub $2,$10,$9		# b
 	
 	nor $4,$9,$0
 	add $2,$10,$4
-	addi $2,$2,1
+	addi $2,$2,1		# c
 	
-	sll $2,$13,5
+	sll $2,$13,5		# d
 	
-	sra $2,$13,5
+	sra $2,$13,5		# e
 	
-	sra $2,$12,5
+	sra $2,$12,5		# f
 	
-	srl $2,$12,5
+	srl $2,$12,5		# g
 
-	srlv $2,$13,$9
+	srlv $2,$13,$9		# h
 	
-	div $24,$25
+	div $24,$25		#i
 	
-	addiu $2,$15,1
+	addiu $2,$15,1		#j
 	
-	addi $2,$15,1
+	addi $2,$15,1		#k
 	
-	clo $2, $11
-	clo $2,$14	
+	clo $2, $11		#l
+	
+	clo $2,$14		# m
 	
 	#Aufgabe 4.4
 	
@@ -67,6 +68,4 @@ start:
 	.byte 0xa0
 	.half 0xb1b0
 	.word 0xc3c2c1c0
-	.ascii "Das Ende"
-	
-	
+.ascii "Das Ende"
