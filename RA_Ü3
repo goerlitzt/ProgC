@@ -5,13 +5,13 @@ start:
 	
 	xor $8,$8,$8        	 # 8    0
 	
-	xor $9,$9,$9
+	
 	addi $9,$0,11		# 9	11
 	
-	xor $10,$10,$10
+	
 	lui $10,4096		#10	0x1000
 	
-	xor $11,$11,$11
+	
 	addi $11,$0,-1		#11	-1
 	
 	xor $12,$12,$12
@@ -30,7 +30,8 @@ start:
 	xor $24,$24,$24
 	addi $24,$0,5322	#16	5322
 	
-	xor $25,$0,75		#17	75
+	xor $25,$25,$25
+	addi $25,$0,75		#17	75
 	
 	#Aufgabe 4.3
 	
@@ -52,7 +53,9 @@ start:
 
 	srlv $2,$13,$9		# h	logical
 	
-	div $24,$25		# i
+	div $24,$25	
+	mfhi $2
+	mflo $3	# i
 	
 	addiu $2,$15,1		# j	unsigned
 	
@@ -64,7 +67,7 @@ start:
 	
 	#Aufgabe 4.4
 	
-	.data 
+.data 
 	.byte 0xa0
 	.half 0xb1b0
 	.word 0xc3c2c1c0
