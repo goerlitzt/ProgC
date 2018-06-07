@@ -42,21 +42,21 @@ start:
 	add $2,$10,$4
 	addi $2,$2,1		# c
 	
-	sll $2,$13,5		# d
+	sll $2,$13,5		# d	logical
 	
-	sra $2,$13,5		# e
+	sra $2,$13,5		# e	arithmetic	
 	
-	sra $2,$12,5		# f
+	sra $2,$12,5		# f	arithmetic
 	
-	srl $2,$12,5		# g
+	srl $2,$12,5		# g	logical
 
-	srlv $2,$13,$9		# h
+	srlv $2,$13,$9		# h	logical
 	
 	div $24,$25		# i
 	
-	addiu $2,$15,1		# j
+	addiu $2,$15,1		# j	unsigned
 	
-	addi $2,$15,1		# k
+	addi $2,$15,1		# k	signed
 	
 	clo $2, $11		# l
 	
@@ -68,4 +68,4 @@ start:
 	.byte 0xa0
 	.half 0xb1b0
 	.word 0xc3c2c1c0
-.ascii "Das Ende"
+	.ascii "Das Ende"
