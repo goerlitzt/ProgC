@@ -1,0 +1,18 @@
+.text
+
+start:
+	
+	lui $4,30
+	
+	lui $5,25
+	
+	or $2,$0,$5
+	
+	beq $4,$0,eins
+		
+	beq $5,$0,zwei
+	
+	
+eins:
+zwei:
+else:
