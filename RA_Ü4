@@ -24,7 +24,7 @@ False: 	sub $5,$5,$4
 
 	j z
 	
-neun:	or $2,$0,$4
+i:	or $2,$0,$4
 	
-zehn:	j k		
+k:	j k		
 	
