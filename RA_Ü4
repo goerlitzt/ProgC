@@ -1,18 +1,30 @@
 .text
 
+
 start:
 	
-	lui $4,30
+	addi $4,,$0,17
 	
-	lui $5,25
+	addi $5,$0,51
 	
 	or $2,$0,$5
 	
-	beq $4,$0,eins
+	beq $4,$0,k
+	
+z:	beq $5,$0,i
 		
-	beq $5,$0,zwei
+	slt $6,$5,$4
 	
+	bgtz $6,True
 	
-eins:
-zwei:
-else:
+	blez $6,False
+	
+True:	sub $4,$4,$5
+False: 	sub $5,$5,$4
+
+	j z
+	
+neun:	or $2,$0,$4
+	
+zehn:	j k		
+	
