@@ -10,9 +10,9 @@ main:	addi $4,,$0,17
 	
 	or $2,$0,$5
 	
-	jal programm
+	jal programm	#Unterprogramm
 	
-	syscall
+	syscall		#exit
 	
 programm:
 	
