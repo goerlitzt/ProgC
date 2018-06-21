@@ -1,8 +1,9 @@
 .text
+	jal programm
 
-
-start:
+start: 	
 	
+programm:
 	addi $4,,$0,17
 	
 	addi $5,$0,51
@@ -20,11 +21,11 @@ z:	beq $5,$0,i
 	blez $6,False
 	
 True:	sub $4,$4,$5
+	j z
 False: 	sub $5,$5,$4
 
 	j z
 	
 i:	or $2,$0,$4
 	
-k:	j k		
-	
+k: 	jr $ra
