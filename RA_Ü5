@@ -1,0 +1,23 @@
+.text
+
+start:
+	
+	
+strtolower:
+	
+	
+
+strturnaround:
+
+strispalindrom:
+
+strcat:
+	
+
+.data
+
+	str1: .asciiz "Lager"
+	str2: .asciiz "Regal"
+	str3: .space  10
+	.byte  0xff
+	.byte  0xff
