@@ -1,0 +1,142 @@
+#AUFGABENBLATT 5
+#Vars
+	.data
+str1:	.asciiz "Lager"
+str2:	.asciiz "Regal"
+str3:	.space 10
+	.byte 0xff
+	.byte 0xff
+
+
+#Routinen
+	.text
+	li $s0, 64			#Anfang Großbuchstaben (-1)
+	li $s1, 90			#Ende Großbuchstaben
+	addi $6,$0,0			#Zählvariable
+strtolower: 
+	lb $2,str1($6)			#Einlesen N-tes Zeichen von Str
+	beqz $2,tolowerend		#Wenn Eingabe leer Jump ENDE
+	bgt  $2,$s0,tolower1		#Wenn Eingabe Großbuchstaben enthält Jump
+
+tolower1:
+	bgt $2,$s1,tolower2		#Wenn eingabe nicht im Zeichenbereich Jump
+	
+	addi $2,$2,32			#Verschiebung Gro�-Klein-Buchstaben
+	sb $2,str1($6)			#Speichern neuer Variable
+	addi $6,$6,1			#Verschiebung Z�hlvariable +1
+j strtolower
+
+tolower2:
+	addi $6,$6,1			#Verschiebung Z�hlvariable +1
+j strtolower
+
+tolowerend:
+	#ENDE
+	
+
+
+
+
+	addi $6,$0,0			#Zählvariable
+	addi $7,$0,0			#Zählvariable 2
+strlen:
+	lb $2,str1($6)
+	beqz $2,zwischen		#Wenn Eingabe leer Jump
+	addi $6,$6,1
+j strlen
+zwischen:
+	addi $6,$6,-1			#Verhinderung von NULLByte
+j strturnaround
+strturnaround:
+
+	lb $2,str1($7)			#Einlesen der Bytes von vorne
+	lb $3,str1($6)			#Einlesen der Bytes von hinten
+	addi $4,$2,0			#Zwischenspeichern vorderes Byte
+	addi $5,$3,0			#Zwischenspeichern hinteres Byte
+	
+	sb $5,str1($7)			#Hinteres Byte vorne speichern
+	sb $4,str1($6)			#Vorderes Byte hinten speichern
+	
+	addi $7,$7,1			#Zähler hoch/runtersetzen
+	addi $6,$6,-1
+	
+	bge $7,$6,turnend		#Zähler vergleichen / evtl Abbruch.
+j strturnaround
+
+turnend:
+	addi $4,$0,0
+	addi $5,$0,0
+	#ENDE
+
+
+
+
+
+	addi $6,$0,0			#Zählvariable
+	addi $7,$0,0			#Zählvariable 2
+	
+strlenpal:
+	lb $2,str1($7)
+	beqz $2,zwischen2		#Wenn Eingabe leer Jump
+	addi $7,$7,1
+j strlenpal
+zwischen2:
+	addi $7,$7,-1			#Verhinderung von NULLByte
+j strispalindrom
+strispalindrom:
+
+	lb $2,str1($6)
+	lb $3,str1($7)
+	
+	bne $2,$3,palindromend3		#Falls Bytes ungleich Jump
+	bge $7,$6,palindromend2		#Zähler vergleichen / evtl Abbruch.
+	
+	addi $7,$7,-1			#Zähler hoch/runtersetzen
+	addi $6,$6,1
+j strispalindrom
+	
+palindromend2:
+	addi $4,$4,1
+j palindromend
+palindromend3:
+	addi $5,$5,1
+j palindromend
+palindromend:
+	#ENDE
+	
+	
+	
+
+
+	
+	addi $6,$0,0			#Zählvariable
+	addi $7,$0,0			#Zählvariable 2
+		
+strcat:
+	lb $2,str1($6)
+	sb $2,str3($7)
+	
+	beqz $2,zwischen3		#Wenn Eingabe leer Jump ENDE
+	addi $6,$6,1
+	addi $7,$7,1
+	
+j strcat
+
+zwischen3:
+	addi $6,$0,0			#Zähler 1 zurücksetzen
+j strcat2
+
+strcat2:
+	lb $2,str1($6)
+	sb $2,str3($7)
+	
+	beqz $2,strcatend		#Wenn Eingabe leer Jump ENDE
+	addi $6,$6,1
+	addi $7,$7,1
+
+
+j strcat2
+
+strcatend:
+#ENDE	
+	
