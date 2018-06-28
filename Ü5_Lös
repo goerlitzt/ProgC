@@ -1,142 +1,243 @@
-#AUFGABENBLATT 5
-#Vars
-	.data
-str1:	.asciiz "Lager"
-str2:	.asciiz "Regal"
-str3:	.space 10
-	.byte 0xff
-	.byte 0xff
+# Rechnerarchitekturen und Assemblersprachen
+# By: David Mang
 
+# Es empfiehlt sich die gesamte Aufgabe beim ersten mal Programmieren aufzuteilen und aus den Teilaufgaben jeweils ein porgramm zu erstellen.
 
-#Routinen
-	.text
-	li $s0, 64			#Anfang Großbuchstaben (-1)
-	li $s1, 90			#Ende Großbuchstaben
-	addi $6,$0,0			#Zählvariable
-strtolower: 
-	lb $2,str1($6)			#Einlesen N-tes Zeichen von Str
-	beqz $2,tolowerend		#Wenn Eingabe leer Jump ENDE
-	bgt  $2,$s0,tolower1		#Wenn Eingabe Großbuchstaben enthält Jump
+# Komplette Aufgabe 5. Zur übersicht wurde "jal" ganz links an Rand geschrieben um einen besseren Überblick zu ermöglichen
+# .data befindet sich am Ende des Programms
+# Zischen "syscall 10" und der ersten subroutine befinden sich zwei Zeilen ## um zu verdeutlichen wo das "main" Programm aufhört und wo die subrotuine anfängt
 
-tolower1:
-	bgt $2,$s1,tolower2		#Wenn eingabe nicht im Zeichenbereich Jump
+.text
+
+	la $a0, str1
 	
-	addi $2,$2,32			#Verschiebung Gro�-Klein-Buchstaben
-	sb $2,str1($6)			#Speichern neuer Variable
-	addi $6,$6,1			#Verschiebung Z�hlvariable +1
-j strtolower
-
-tolower2:
-	addi $6,$6,1			#Verschiebung Z�hlvariable +1
-j strtolower
-
-tolowerend:
-	#ENDE
+jal strlower		# line 108
 	
-
-
-
-
-	addi $6,$0,0			#Zählvariable
-	addi $7,$0,0			#Zählvariable 2
-strlen:
-	lb $2,str1($6)
-	beqz $2,zwischen		#Wenn Eingabe leer Jump
-	addi $6,$6,1
-j strlen
-zwischen:
-	addi $6,$6,-1			#Verhinderung von NULLByte
-j strturnaround
-strturnaround:
-
-	lb $2,str1($7)			#Einlesen der Bytes von vorne
-	lb $3,str1($6)			#Einlesen der Bytes von hinten
-	addi $4,$2,0			#Zwischenspeichern vorderes Byte
-	addi $5,$3,0			#Zwischenspeichern hinteres Byte
+######################################################################## 5a) str1 wird an die subroutine übergeben
 	
-	sb $5,str1($7)			#Hinteres Byte vorne speichern
-	sb $4,str1($6)			#Vorderes Byte hinten speichern
+	la $a0, str2
 	
-	addi $7,$7,1			#Zähler hoch/runtersetzen
-	addi $6,$6,-1
+jal strlower		# line 108
 	
-	bge $7,$6,turnend		#Zähler vergleichen / evtl Abbruch.
-j strturnaround
-
-turnend:
-	addi $4,$0,0
-	addi $5,$0,0
-	#ENDE
-
-
-
-
-
-	addi $6,$0,0			#Zählvariable
-	addi $7,$0,0			#Zählvariable 2
+######################################################################## 5a) str2 wird an die subroutine übergeben	
 	
-strlenpal:
-	lb $2,str1($7)
-	beqz $2,zwischen2		#Wenn Eingabe leer Jump
-	addi $7,$7,1
-j strlenpal
-zwischen2:
-	addi $7,$7,-1			#Verhinderung von NULLByte
-j strispalindrom
-strispalindrom:
-
-	lb $2,str1($6)
-	lb $3,str1($7)
+	la $a0, str1
+	li $v0, 4
+	syscall						# manipulierter str1 wird ausgegeben  
 	
-	bne $2,$3,palindromend3		#Falls Bytes ungleich Jump
-	bge $7,$6,palindromend2		#Zähler vergleichen / evtl Abbruch.
+	la $a0, '\n'
+	li $v0, 11
+	syscall						# print newline
 	
-	addi $7,$7,-1			#Zähler hoch/runtersetzen
-	addi $6,$6,1
-j strispalindrom
-	
-palindromend2:
-	addi $4,$4,1
-j palindromend
-palindromend3:
-	addi $5,$5,1
-j palindromend
-palindromend:
-	#ENDE
-	
-	
-	
-
-
-	
-	addi $6,$0,0			#Zählvariable
-	addi $7,$0,0			#Zählvariable 2
+	la $a0, str2
+	li $v0, 4
+	syscall						# manipulierter str2 wird ausgegeben 
 		
+#######################################################################	5a) == Ende 	
+	
+	la $a0, str1
+	
+jal strturn		# line 134
+	
+#######################################################################	5b) str1 wird an die subroutine übergeben
+	
+	la $a0, str2
+	
+jal strturn		# line 134
+	
+#######################################################################	5b) str2 wird an die subroutine übergeben
+
+	la $a0, '\n'
+	li $v0, 11
+	syscall						# print newline
+	
+	la $a0, str1
+	li $v0, 4
+	syscall						# manipulierter str1 wird ausgegeben
+	
+	la $a0, '\n'
+	li $v0, 11
+	syscall						# print newline
+	
+	la $a0, str2
+	li $v0, 4
+	syscall						# manipulierter str2 wird ausgegeben
+	
+#######################################################################	 5b == Ende
+
+	la $a0, str1
+	la $a1, str2
+	la $a2, str3
+	
+jal strcat		# line 161
+	
+#######################################################################	5d) str1, str2, str3 wird an die subroutine übergeben
+	
+	la $a0, '\n'
+	li $v0, 11
+	syscall					# print newline
+	
+	la $a0, str3
+	li $v0, 4
+	syscall					# strcat von str1 und str2 wird mit str3 ausgegeben
+
+#######################################################################	5d) == Ende
+
+	la $a0, str3
+	
+jal palindrom		# line 199
+
+#######################################################################	5c)str3 wird an die subroutine übergeben
+
+	move $t0, $v0				# Speicher ergebnis ob Palindrom in $v0
+
+	la $a0, '\n'
+	li $v0, 11
+	syscall					# print newline
+	
+	move $a0, $t0				
+	bne $a0, 1, end_program			# Wenn $a0 != 1 (Kein Palindrom)
+	
+	li $v0, 1
+	syscall
+	
+end_program:
+
+	li $v0, 10
+	syscall					# ENDE
+	
+
+#######################################################################	
+#######################################################################	
+
+												
+strlower:
+
+loop_lower:
+
+	lb $t0, 0($a0)
+	
+	beqz $t0, end_lower
+	
+	blt $t0, 'A', not_lower
+	bgt $t0, 'Z', not_lower
+	
+	ori $t0, $t0, 32
+	sb $t0, 0($a0)
+	
+not_lower:
+
+	addi $a0, $a0, 1
+	
+	j loop_lower
+	
+end_lower:
+
+	jr $ra
+
+#######################################################################	
+
+strturn:
+
+	li $t0, 4
+	
+loop_turn:	
+	
+	beqz $t0, end_turn
+	
+	lb $t1, 0($a0)
+	add $a0, $a0, $t0
+	lb $t2, 0($a0)
+	
+	sb $t1, 0($a0)
+	sub $a0, $a0, $t0
+	sb $t2, 0($a0)
+	
+	addi $a0, $a0, 1
+	subi $t0, $t0, 2
+	
+	j loop_turn
+	
+end_turn:
+
+	jr $ra	
+
+#######################################################################	
+
 strcat:
-	lb $2,str1($6)
-	sb $2,str3($7)
+
+loop_strcat1:
+
+
+	lb $t0, 0($a1)
 	
-	beqz $2,zwischen3		#Wenn Eingabe leer Jump ENDE
-	addi $6,$6,1
-	addi $7,$7,1
+	beqz $t0, next_loop
 	
-j strcat
-
-zwischen3:
-	addi $6,$0,0			#Zähler 1 zurücksetzen
-j strcat2
-
-strcat2:
-	lb $2,str1($6)
-	sb $2,str3($7)
+	sb $t0, 0($a2)
 	
-	beqz $2,strcatend		#Wenn Eingabe leer Jump ENDE
-	addi $6,$6,1
-	addi $7,$7,1
-
-
-j strcat2
-
-strcatend:
-#ENDE	
+	addi $a1, $a1, 1
+	addi $a2, $a2, 1
 	
+	j loop_strcat1
+
+
+next_loop:
+
+loop_strcat2:
+
+	lb $t0, 0($a0)
+	
+	beqz $t0, end_strcat
+	
+	sb $t0, 0($a2)
+	
+	addi $a0, $a0, 1
+	addi $a2, $a2, 1
+	
+	j loop_strcat2
+
+end_strcat:
+
+	jr $ra
+
+#######################################################################	
+
+palindrom:
+
+	li $t0, 9					# counter backwards
+	
+loop_palindrom:
+
+	lb $t1, 0($a0)
+	add $a0, $a0, $t0
+	lb $t2, 0($a0)
+	
+	bne $t1, $t2, not_palindrom
+	
+	sb $t1, 0($a0)
+	sub $a0, $a0, $t0
+	sb $t2, 0($a0)
+	
+	beq $t0, 1, end_palindrom
+	
+	addi $a0, $a0, 1
+	subi $t0, $t0, 2
+	
+	j loop_palindrom
+
+end_palindrom:
+
+	addi $v0, $zero, 1				# if Palindrom add $v0, 1
+
+not_palindrom:
+
+	jr $ra
+	
+
+#######################################################################	
+
+.data
+
+	str1:	.asciiz "Regal"
+	str2:	.asciiz "Lager"
+	str3: 	.space 10
