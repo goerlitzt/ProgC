@@ -1,48 +1,53 @@
+.data
+
+	str1: .asciiz "LAger"
+	str2: .asciiz "Regal"
+	str3: .space  10
+	      .byte 0xff
+              .byte 0xff
+
 .text
 
 start:
-	la $a0,str1
+	la $a0,str1		#prints "Lager"
 	li $v0,4 
+	syscall		
 	
+	la $a0,str1
+	jal strtolower		#goes to the branch
+	
+	
+	la $a0,'\n'		#Zeilenumbruch
+	li $v0,11
 	syscall
-	la $a0,str1
-	jal strtolower
 	
-	la $a0,str1
+	la $a0,str1		#prints "lager"
 	li $v0,4
 	syscall
 	
-	li $v0,10
+	li $v0,10		#End
 	syscall
 	
 	
 strtolower:
-loopstrtolower:
-	lb $t0,0($a0)	# "L"
+	lb   $t0,0($a0)		#Lädt den Buchstaben
 	beqz $t0,endstrtolower
-	blt $t0,'A',not_lower
-	bgt $t0,'Z',not_lower
+	blt  $t0,'A',not_lower
+	bgt  $t0,'Z',not_lower
+	ori  $t0,$t0,32		#Ändert den Großbuchstaben in einen Kleinbuchstaben   ASCII-TABELLE
+	sb   $t0,0($a0)		#Store
 	
-	ori $t0,$t0,32
 	
 not_lower:
-	addi $a0,$a0,1	
-	j loopstrtolower
+	addi $a0,$a0,1		#Geht einen Schritt weiter, um das nächste Zeichen zu überprüfen
+	j strtolower
 	
 endstrtolower:
-	jr $ra
+	jr   $ra		#Alle Großbuchstaben wurden in Kleinbuchstaben geändert
 
 strturnaround:
 
 strispalindrom:
 
 strcat:
-	
 
-.data
-
-	str1: .asciiz "Lager"
-	str2: .asciiz "Regal"
-	str3: .space  10
-	.byte  0xff
-	.byte 0xff
