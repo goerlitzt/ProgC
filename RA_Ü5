@@ -1,11 +1,36 @@
 .text
 
 start:
+	la $a0,str1
+	li $v0,4 
+	
+	syscall
+	la $a0,str1
+	jal strtolower
+	
+	la $a0,str1
+	li $v0,4
+	syscall
+	
+	li $v0,10
+	syscall
 	
 	
 strtolower:
+loopstrtolower:
+	lb $t0,0($a0)	# "L"
+	beqz $t0,endstrtolower
+	blt $t0,'A',not_lower
+	bgt $t0,'Z',not_lower
 	
+	ori $t0,$t0,32
 	
+not_lower:
+	addi $a0,$a0,1	
+	j loopstrtolower
+	
+endstrtolower:
+	jr $ra
 
 strturnaround:
 
@@ -20,4 +45,4 @@ strcat:
 	str2: .asciiz "Regal"
 	str3: .space  10
 	.byte  0xff
-	.byte  0xff
+	.byte 0xff
